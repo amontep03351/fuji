@@ -11,7 +11,7 @@ class ProductCategory extends Model
     protected $table = 'product_category';
     
     protected $fillable = [ 
-        'display_order', 'status'
+        'display_order', 'status' , 'parent_id'
     ];
  
     /**
@@ -20,5 +20,15 @@ class ProductCategory extends Model
     public function translations()
     {
         return $this->hasMany(ProductCategoryTranslation::class, 'product_category_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(ProductCategory::class, 'parent_id');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(ProductCategory::class, 'parent_id');
     }
 }
