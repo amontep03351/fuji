@@ -59,54 +59,62 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
         // Validate the request
         $validator = Validator::make($request->all(), [
             'name_en' => 'required|string|max:255',
             'name_jp' => 'required|string|max:255',
+            'category_id' => 'required', 
             'description_en' => 'required|string',
             'description_jp' => 'required|string',
             'display_order' => 'required|integer',
             'status' => 'required|boolean',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Adjust as needed
+            'main_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Validation for main image
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Validation for additional images
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
         // Create a new product
         $product = Product::create([
             'display_order' => $request->input('display_order'),
             'status' => $request->input('status'),
+            'category_id' => $request->input('category_id'),
         ]);
-
+    
+        // Handle main image upload
+        if ($request->hasFile('main_image')) {
+            $mainImagePath = $request->file('main_image')->store('uploads', 'public');
+            $product->update(['product_image' => $mainImagePath]);
+        }
+    
         // Save the product translations
         $product->translations()->create([
             'locale' => 'en',
             'name' => $request->input('name_en'),
             'description' => $request->input('description_en'),
         ]);
-
+    
         $product->translations()->create([
             'locale' => 'jp',
             'name' => $request->input('name_jp'),
             'description' => $request->input('description_jp'),
         ]);
-
-        // Handle image uploads
+    
+        // Handle additional image uploads
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $path = $image->store('product_images', 'public');
-                
+                $path = $image->store('uploads', 'public');
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'path' => $path,
+                    'image_url' => $path,
                 ]);
             }
         }
-
-        return redirect()->route('product.index')->with('success', 'Product created successfully!');
+    
+        return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
     /**
@@ -126,9 +134,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        // ดึงข้อมูลหมวดหมู่ทั้งหมดพร้อมกับการแปล
+        $categories = ProductCategory::with('translations')->get();
+        $images = $product->images;
+        // ส่งข้อมูลผลิตภัณฑ์และหมวดหมู่ไปยัง View
+        return view('product.edit', compact('product', 'categories', 'images'));
     }
 
     /**
@@ -140,8 +152,47 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'name_en' => 'required|string|max:255',
+            'name_jp' => 'required|string|max:255',
+            'description_en' => 'required|string',
+            'description_jp' => 'required|string',
+            'category_id' => 'required',
+            'display_order' => 'required|integer',
+            'status' => 'required|boolean',
+            
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        // Find the product
+        $product = Product::findOrFail($id);
+    
+        // Update product details
+        $product->update([
+            'category_id' => $request->category_id,
+            'display_order' => $request->display_order,
+            'status' => $request->status,
+        ]);
+    
+        // Update product translations
+        $product->translations()->updateOrCreate(
+            ['locale' => 'en'],
+            ['name' => $request->name_en, 'description' => $request->description_en]
+        );
+        
+        $product->translations()->updateOrCreate(
+            ['locale' => 'jp'],
+            ['name' => $request->name_jp, 'description' => $request->description_jp]
+        );
+     
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
+    
+
 
     /**
      * Remove the specified resource from storage.
@@ -153,4 +204,27 @@ class ProductController extends Controller
     {
         //
     }
+    public function updateImage(Request $request, $id)
+    {
+        $request->validate([
+            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
+   
+        $product = Product::findOrFail($id);
+    
+        // ลบรูปภาพเก่าถ้ามี
+        if (Storage::exists('public/' . $product->product_image)) {
+            Storage::delete('public/' . $product->product_image);
+        }
+    
+        // อัปโหลดรูปภาพใหม่
+        $path = $request->file('product_image')->store('products', 'public');
+    
+        // บันทึกเส้นทางรูปภาพใหม่ในฐานข้อมูล
+        $product->product_image = $path;
+        $product->save();
+    
+        return redirect()->back()->with('success', 'Product image updated successfully.');
+    }
+    
 }

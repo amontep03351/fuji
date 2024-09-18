@@ -26,6 +26,40 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
+            /* Tailwind CSS Utility Classes used */
+
+            .relative {
+                position: relative;
+            }
+
+            .group:hover .group-hover\:opacity-100 {
+                opacity: 1;
+            }
+
+            .group-hover\:opacity-100 {
+                opacity: 0;
+            }
+
+            .absolute {
+                position: absolute;
+            }
+
+            .bg-red-600 {
+                background-color: #f56565;
+            }
+
+            .bg-red-700 {
+                background-color: #e53e3e;
+            }
+
+            .transition {
+                transition: all 0.3s ease-in-out;
+            }
+
+            .shadow-md {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
         </style>
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

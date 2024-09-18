@@ -74,7 +74,16 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-
+                        <!-- Main Image Upload -->
+                        <div class="mt-6">
+                            <label for="main_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Main Product Image</label>
+                            <input type="file" name="main_image" id="main_image" class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 dark:file:bg-gray-800 dark:file:text-gray-400 dark:hover:file:bg-gray-700">
+                            @error('main_image')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
+                        </div> 
+ 
                         <!-- Images Upload -->
                         <div class="mt-6">
                             <label for="images" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Product Images</label>
@@ -82,6 +91,7 @@
                             @error('images.*')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
                         </div>
 
                         <!-- Submit Button -->

@@ -15,6 +15,7 @@ class Product extends Model
         'product_image',
         'display_order',
         'status',
+        'category_id'
     ];
 
     /**

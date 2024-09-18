@@ -64,7 +64,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (EN)</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (JP)</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th> 
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
@@ -74,14 +74,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{{ $product->display_order }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $product->translations->where('locale', 'en')->first()->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $product->translations->where('locale', 'jp')->first()->name }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium"> 
                                             <label class="inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" class="sr-only peer status-checkbox" 
                                                     data-id="{{ $product->id }}"
-                                                    {{ $product->status === 1 ? 'checked' : '' }}>
+                                                    {{ $product->status === '1' ? 'checked' : '' }}>
                                                 <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                             </label>
-                                        </td>
+                                        </td>                      
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
                                             <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
 

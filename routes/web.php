@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCategoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\ProductImageController; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,10 +52,11 @@ Route::middleware('auth')->group(function () {
 
 
     // Route for Products (Resourceful)
-    Route::resource('products', ProductController::class);
-    // Route::post('/product/update-order', [ProductController::class, 'updateOrder'])->name('product.update-order'); 
-    // Route::post('/product/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggle-status');  
-
+    Route::resource('products', ProductController::class);    
+    Route::delete('/images/{id}', [ProductImageController::class, 'destroy'])->name('images.destroy');
+    Route::put('products/{product}/image', [ProductController::class, 'updateImage'])->name('products.update.image');
+    Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('images.store'); 
+ 
 });
 
 
