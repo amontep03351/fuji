@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\ProductImageController; 
-
+use App\Http\Controllers\AboutUsController; 
+use App\Http\Controllers\ImageSliderController;
+use App\Http\Controllers\SystemController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +19,16 @@ use App\Http\Controllers\ProductImageController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -57,6 +60,19 @@ Route::middleware('auth')->group(function () {
     Route::put('products/{product}/image', [ProductController::class, 'updateImage'])->name('products.update.image');
     Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('images.store'); 
     Route::post('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggle-status');  
+
+
+    Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus.index');
+    Route::put('/aboutus/update', [AboutUsController::class, 'update'])->name('aboutus.update');
+    Route::put('/aboutus/update-image', [AboutUsController::class, 'updateImage'])->name('aboutus.update.image');
+
+    Route::resource('image_sliders', ImageSliderController::class);
+    Route::post('/image_sliders/update-order', [ImageSliderController::class, 'updateOrder'])->name('image_sliders.update-order'); 
+    Route::post('/image_sliders/toggle-status', [ImageSliderController::class, 'toggleStatus'])->name('image_sliders.toggle-status');  
+
+    Route::resource('System', SystemController::class);
+    Route::post('/System/update-order', [SystemController::class, 'updateOrder'])->name('System.update-order'); 
+    Route::post('/System/toggle-status', [SystemController::class, 'toggleStatus'])->name('System.toggle-status');  
 });
 
 

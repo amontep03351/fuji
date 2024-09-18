@@ -15,6 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('image_sliders.index')" :active="request()->routeIs('image_sliders.*')">
+                        {{ __('Image Sliders') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('System.index')" :active="request()->routeIs('System.*')">
+                        {{ __('System') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('aboutus.index')" :active="request()->routeIs('aboutus.*')">
+                        {{ __('About us') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('product-categories.index')" :active="request()->routeIs('product-categories.*')">
                         {{ __('Product Categories') }}
                     </x-nav-link> 
@@ -76,6 +85,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('image_sliders.index')" :active="request()->routeIs('image_sliders.*')">
+                {{ __('Image sliders') }}
+            </x-responsive-nav-link> 
+            <x-responsive-nav-link :href="route('System.index')" :active="request()->routeIs('System.*')">
+                {{ __('System') }}
+            </x-responsive-nav-link> 
+            <x-responsive-nav-link :href="route('aboutus.index')" :active="request()->routeIs('aboutus.*')">
+                {{ __('About us') }}
+            </x-responsive-nav-link> 
             <x-responsive-nav-link :href="route('product-categories.index')" :active="request()->routeIs('product-categories.*')">
                 {{ __('Product Categories') }}
             </x-responsive-nav-link> 
