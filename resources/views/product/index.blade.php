@@ -85,11 +85,13 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
                                             <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
 
-                                            <!-- Delete Form -->
+                                         
+                                            <!-- ฟอร์มสำหรับลบ -->
                                             <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                                <button type="submit" class="text-red-600 hover:text-red-900" 
+                                                    onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -110,4 +112,40 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('.status-checkbox').on('change', function() {
+                var checkbox = $(this);
+                var id = checkbox.data('id');
+                var status = checkbox.is(':checked') ? '1' : '0'; // 1 for active, 0 for inactive
+                document.getElementById('loading-spinner').classList.remove('hidden');
+                fetch('{{ route('product.toggle-status') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: JSON.stringify({
+                        id: id,
+                        status: status
+                    }),
+                }).then(response => response.json())
+                .then(data => {
+                    // ซ่อน loading spinner เมื่อการทำงานเสร็จสิ้น
+                    document.getElementById('loading-spinner').classList.add('hidden');
+
+                    if (data.success) {
+                        //location.reload();
+                    } else {
+                        alert('Failed to update.');
+                    }
+                }).catch(error => {
+                    // ซ่อน loading spinner เมื่อเกิดข้อผิดพลาด
+                    document.getElementById('loading-spinner').classList.add('hidden');
+                    alert('An error occurred: ' + error.message);
+                }); 
+            });
+        });
+
+    </script>
 </x-app-layout>

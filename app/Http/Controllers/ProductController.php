@@ -200,10 +200,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        // ลบสินค้า
+        $product->delete();
+    
+        // ส่งข้อความแสดงผลสำเร็จกลับไป
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
+    
     public function updateImage(Request $request, $id)
     {
         $request->validate([
@@ -226,5 +231,11 @@ class ProductController extends Controller
     
         return redirect()->back()->with('success', 'Product image updated successfully.');
     }
-    
+    public function toggleStatus(Request $request)
+    {
+        $id = $request->input('id');
+        $status = $request->input('status');
+        Product::where('id', $id)->update(['status' => $status]);
+        return response()->json(['success' => true]);
+    }
 }

@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/images/{id}', [ProductImageController::class, 'destroy'])->name('images.destroy');
     Route::put('products/{product}/image', [ProductController::class, 'updateImage'])->name('products.update.image');
     Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('images.store'); 
- 
+    Route::post('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggle-status');  
 });
 
 
