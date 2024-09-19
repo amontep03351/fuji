@@ -67,8 +67,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Scripts --> 
+        <link rel="stylesheet" href="{{ asset('build/assets/app-1fc221b5.css') }}">
+        <script src="{{ asset('build/assets/app-c295b1f0.js') }}" defer></script>
+
     </head>
     <body class="font-sans antialiased"> 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
