@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 white:text-gray-200 leading-tight">
             {{ __('Image Sliders') }}
         </h2>
     </x-slot>
@@ -15,7 +15,7 @@
             @endif
 
             <!-- Search Form and Sort Button -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6 flex items-center space-x-4">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6 flex items-center space-x-4">
                 <form method="GET" action="{{ route('image_sliders.index') }}" class="flex items-center space-x-4">
                     <input
                         type="text"
@@ -33,8 +33,8 @@
                 </form> 
             </div>
             <!-- Table -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 white:text-gray-100">
                     <!-- Add this above the table -->
                     <div class="flex justify-between mb-6">
                         <div>
@@ -57,7 +57,7 @@
 
                     <!-- Data Table -->
                     <div class="overflow-x-auto">
-                        <table id="sortable-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <table id="sortable-table" class="min-w-full divide-y divide-gray-200 white:divide-gray-700">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>                                                                                                                                      
@@ -72,22 +72,22 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @forelse ($imageSliders as $imageSlider) 
-                                    <tr data-id="{{ $imageSlider->id }}" class="sortable-row hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{{ $imageSlider->display_order }}</td>
+                                    <tr data-id="{{ $imageSlider->id }}" class="sortable-row hover:bg-gray-100 white:hover:bg-gray-700 transition-colors duration-200">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $imageSlider->display_order }}</td>
                                            <!-- คอลัมน์รูปภาพใหม่ -->
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                            <img src="{{ asset('storage/' . $imageSlider->image_url) }}" alt="{{ $imageSlider->title_en }}" class="w-12 h-12 object-cover rounded-full">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">
+                                            <img src="{{ Storage::url($imageSlider->image_url) }}" alt="{{ $imageSlider->title_en }}" class="w-12 h-12 object-cover rounded-full">
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $imageSlider->title_en }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $imageSlider->title_jp }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $imageSlider->description_en }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $imageSlider->description_jp }}</td> 
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->title_en }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->title_jp }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->description_en }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->description_jp }}</td> 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium"> 
                                             <label class="inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" class="sr-only peer status-checkbox" 
                                                     data-id="{{ $imageSlider->id }}"
                                                     {{ $imageSlider->status === 1 ? 'checked' : '' }}>
-                                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 white:peer-focus:ring-blue-800 rounded-full peer white:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all white:border-gray-600 peer-checked:bg-blue-600"></div>
                                             </label>
                                         </td>  
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
@@ -101,7 +101,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No products found</td>
+                                        <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500 white:text-gray-400">No products found</td>
                                     </tr>
                                 @endforelse
                             </tbody>

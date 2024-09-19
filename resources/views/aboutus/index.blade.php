@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 white:text-gray-200 leading-tight">
             {{ __('About Us') }}
         </h2>
     </x-slot>
@@ -24,31 +24,31 @@
                 </div>
             @endif
             <!-- About Us Form -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 white:text-gray-100">
                     <form action="{{ route('aboutus.update') }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <!-- Title -->
                         <div class="mb-6">
-                            <label for="title_en" class="block text-sm font-medium text-gray-700 dark:text-gray-300">About Us Title (EN)</label>
+                            <label for="title_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">About Us Title (EN)</label>
                             <input type="text" id="title_en" name="title_en" value="{{ old('title_en', $aboutUs->title_en) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                         </div>
 
                         <div class="mb-6">
-                            <label for="title_jp" class="block text-sm font-medium text-gray-700 dark:text-gray-300">About Us Title (JP)</label>
+                            <label for="title_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">About Us Title (JP)</label>
                             <input type="text" id="title_jp" name="title_jp" value="{{ old('title_jp', $aboutUs->title_jp) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                         </div>
 
                         <!-- Description -->
                         <div class="mb-6">
-                            <label for="description_en" class="block text-sm font-medium text-gray-700 dark:text-gray-300">About Us Description (EN)</label>
+                            <label for="description_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">About Us Description (EN)</label>
                             <textarea id="description_en" name="description_en" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('description_en', $aboutUs->description_en) }}</textarea>
                         </div>
 
                         <div class="mb-6">
-                            <label for="description_jp" class="block text-sm font-medium text-gray-700 dark:text-gray-300">About Us Description (JP)</label>
+                            <label for="description_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">About Us Description (JP)</label>
                             <textarea id="description_jp" name="description_jp" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('description_jp', $aboutUs->description_jp) }}</textarea>
                         </div>
 
@@ -63,10 +63,10 @@
             </div>
 
             <!-- Image Upload Form -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-8">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-8">
+                <div class="p-6 text-gray-900 white:text-gray-100">
                     <h3>Main Image</h3>
-                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image. Image dimensions: 479.6 x 479.6 pixels.</p>
+                    <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image. Image dimensions: 479.6 x 479.6 pixels.</p>
                     <div class="relative group overflow-hidden rounded-lg shadow-lg border border-gray-300 hover:shadow-xl transition-shadow duration-300">
                         <!-- Image -->
                         @if ($aboutUs->image)

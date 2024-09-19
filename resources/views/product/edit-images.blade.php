@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 white:text-gray-200 leading-tight">
             {{ __('Manage Product Images') }} - {{ $product->translations->where('locale', 'en')->first()->name }}
         </h2>
     </x-slot>
@@ -15,17 +15,17 @@
             @endif
 
             <!-- Form for Uploading New Images -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6">
                 <form action=" " method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <!-- Display Current Images -->
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Current Images</label>
+                        <label class="block text-sm font-medium text-gray-700 white:text-gray-300">Current Images</label>
                         @forelse ($images as $image)
-                            <div class="relative w-full h-100 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 mb-4">
-                                <img src="{{ asset('storage/'.$image->image_url) }}" alt="Product Image" class="w-full h-full object-cover">
+                            <div class="relative w-full h-100 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 white:bg-gray-700 mb-4">
+                                <img src="{{ Storage::url($image->image_url) }}" alt="Product Image" class="w-full h-full object-cover">
                                 <form action="{{ route('productImages.destroy', $image) }}" method="POST" class="absolute top-2 right-2">
                                     @csrf
                                     @method('DELETE')
@@ -33,15 +33,15 @@
                                 </form>
                             </div>
                         @empty
-                            <div class="p-4 bg-gray-200 dark:bg-gray-800 border border-gray-300 rounded-lg text-center">
-                                <p class="text-gray-600 dark:text-gray-400">No images available.</p>
+                            <div class="p-4 bg-gray-200 white:bg-gray-800 border border-gray-300 rounded-lg text-center">
+                                <p class="text-gray-600 white:text-gray-400">No images available.</p>
                             </div>
                         @endforelse
                     </div>
 
                     <!-- Upload New Image -->
                     <div class="mb-4">
-                        <label for="image_url" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Upload New Image (Optional)</label>
+                        <label for="image_url" class="block text-sm font-medium text-gray-700 white:text-gray-300">Upload New Image (Optional)</label>
                         <input
                             type="file"
                             id="image_url"

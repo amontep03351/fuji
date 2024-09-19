@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 white:text-gray-200 leading-tight">
             {{ __('Products') }} 
         </h2>
     </x-slot>
@@ -15,7 +15,7 @@
             @endif
 
             <!-- Search Form and Sort Button -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6 flex items-center space-x-4">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6 p-6 flex items-center space-x-4">
                 <form method="GET" action="{{ route('products.index') }}" class="flex items-center space-x-4">
                     <input
                         type="text"
@@ -34,8 +34,8 @@
             </div>
 
             <!-- Table -->
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 white:text-gray-100">
                     <!-- Add this above the table -->
                     <div class="flex justify-between mb-6">
                         <div>
@@ -58,8 +58,8 @@
 
                     <!-- Data Table -->
                     <div class="overflow-x-auto">
-                        <table id="sortable-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                        <table id="sortable-table" class="min-w-full divide-y divide-gray-200 white:divide-gray-700">
+                            <thead class="bg-gray-50 white:bg-gray-700">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (EN)</th>
@@ -68,18 +68,18 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800">
+                            <tbody class="bg-white divide-y divide-gray-200 white:bg-gray-800">
                                 @forelse ($products as $product)
-                                    <tr data-id="{{ $product->id }}" class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{{ $product->display_order }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $product->translations->where('locale', 'en')->first()->name }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $product->translations->where('locale', 'jp')->first()->name }}</td>
+                                    <tr data-id="{{ $product->id }}" class="hover:bg-gray-100 white:hover:bg-gray-700 transition-colors duration-200">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $product->display_order }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $product->translations->where('locale', 'en')->first()->name }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $product->translations->where('locale', 'jp')->first()->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium"> 
                                             <label class="inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" class="sr-only peer status-checkbox" 
                                                     data-id="{{ $product->id }}"
                                                     {{ $product->status === '1' ? 'checked' : '' }}>
-                                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                                <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 white:peer-focus:ring-blue-800 rounded-full peer white:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all white:border-gray-600 peer-checked:bg-blue-600"></div>
                                             </label>
                                         </td>                      
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
@@ -97,7 +97,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 dark:text-gray-400">No products found</td>
+                                        <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500 white:text-gray-400">No products found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
