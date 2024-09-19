@@ -51,7 +51,7 @@ class SystemController extends Controller
         $System->status = $request->input('status');
 
         if ($request->hasFile('image_url')) {
-            $imagePath = $request->file('image_url')->store('images', 'public');
+            $imagePath = $request->file('image_url')->store('uploads', 'public');
             $System->image_url = $imagePath;
         }
 
@@ -86,7 +86,7 @@ class SystemController extends Controller
                 Storage::disk('public')->delete($System->image_url);
             }
 
-            $imagePath = $request->file('image_url')->store('images', 'public');
+            $imagePath = $request->file('image_url')->store('uploads', 'public');
             $System->image_url = $imagePath;
         }
 

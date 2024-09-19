@@ -75,7 +75,7 @@ class AboutUsController extends Controller
             }
     
             // Store the new image
-            $imagePath = $request->file('image')->store('aboutus', 'public');
+            $imagePath = $request->file('image')->store('uploads', 'public');
             $aboutUs->image = $imagePath;
             $aboutUs->save();
         } else {
