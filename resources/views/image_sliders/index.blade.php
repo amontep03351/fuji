@@ -76,7 +76,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $imageSlider->display_order }}</td>
                                            <!-- คอลัมน์รูปภาพใหม่ -->
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">
-                                            <img src="{{ Storage::url($imageSlider->image_url) }}" alt="{{ $imageSlider->title_en }}" class="w-12 h-12 object-cover rounded-full">
+                                            <img src="{{ asset('storage/app/public/'.$imageSlider->image_url) }}" alt="{{ $imageSlider->title_en }}" class="w-12 h-12 object-cover rounded-full">
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->title_en }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $imageSlider->title_jp }}</td>

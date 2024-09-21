@@ -45,7 +45,7 @@
                             <div>
                                 <x-input-label for="image_url" :value="__('Image')" />
                                 @if ($imageSlider->image_url)
-                                    <img src="{{ Storage::url($imageSlider->image_url) }}" alt="Image" class="w-24 h-24 object-cover">
+                                    <img src="{{ asset('storage/app/public/'.$imageSlider->image_url) }}" alt="Image" class="w-24 h-24 object-cover">
                                 @endif
                                 <input id="image_url" name="image_url" type="file" />
                                 <x-input-error :messages="$errors->get('image_url')" class="mt-2" />
@@ -79,4 +79,25 @@
             </div>
         </div>
     </div>
+    <script> 
+        // CKEDITOR.replace('description_en');
+        // CKEDITOR.replace('description_jp');
+         // เริ่มต้น CKEditor
+         ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description_jp'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>

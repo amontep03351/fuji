@@ -101,7 +101,7 @@
                             
                             <div class="relative group overflow-hidden rounded-lg shadow-lg border border-gray-300 hover:shadow-xl transition-shadow duration-300">
                                 <!-- Image -->
-                                <img src="{{ Storage::url($service->service_image) }}" alt="service Image" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                                <img src="{{ asset('storage/app/public/'.$service->service_image) }}" alt="service Image" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
                                 
                                 <!-- Edit Button -->
                                 <button type="button" class="absolute bottom-2 right-2 bg-blue-600 text-white px-3 py-1 text-sm rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onclick="document.getElementById('edit-image-input').click();">
@@ -125,7 +125,7 @@
                             @foreach($images as $image)
                                 <div class="relative group overflow-hidden rounded-lg shadow-lg border border-gray-300 hover:shadow-xl transition-shadow duration-300">
                                     <!-- Image -->
-                                    <img src="{{ Storage::url($image->image_url) }}" alt="service Image" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                                    <img src="{{ asset('storage/app/public/'.$image->image_url) }}" alt="service Image" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
                                     
                                     <!-- Overlay for Delete Button -->
                                     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -166,4 +166,24 @@
             </div>
         </div>
     </div>
+    <script>  
+         // เริ่มต้น CKEditor
+         ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description_jp'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+      
+    </script>
 </x-app-layout>

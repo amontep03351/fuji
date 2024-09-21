@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
     // Route for Products (Resourceful)
     Route::resource('products', ProductController::class);    
-    Route::delete('/images/{id}', [ProductImageController::class, 'destroy'])->name('images.destroy');
+    Route::delete('/product_images/{id}', [ProductImageController::class, 'destroy'])->name('product_images.destroy');
     Route::put('products/{product}/image', [ProductController::class, 'updateImage'])->name('products.update.image');
     Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('images.store'); 
     Route::post('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggle-status');  

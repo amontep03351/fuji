@@ -70,7 +70,7 @@
                     <div class="relative group overflow-hidden rounded-lg shadow-lg border border-gray-300 hover:shadow-xl transition-shadow duration-300">
                         <!-- Image -->
                         @if ($aboutUs->image)
-                            <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image" class="w-full h-100 object-cover transition-transform duration-300 group-hover:scale-110">
+                            <img src="{{ asset('storage/app/public/'.$aboutUs->image) }}" alt="About Us Image" class="w-full h-100 object-cover transition-transform duration-300 group-hover:scale-110">
                         @else
                             <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">No Image</div>
                         @endif
@@ -92,6 +92,25 @@
             </div>
         </div>
     </div>
-
+    <script>  
+         // เริ่มต้น CKEditor
+         ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description_jp'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+      
+    </script>
      
 </x-app-layout>

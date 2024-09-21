@@ -32,7 +32,7 @@
                             <div>
                                 <x-input-label for="image_url" :value="__('Image')" />
                                 @if ($System->image_url)
-                                    <img src="{{ Storage::url($System->image_url) }}" alt="Image" class="w-24 h-24 object-cover">
+                                    <img src="{{ asset('storage/app/public/'.$System->image_url) }}" alt="Image" class="w-24 h-24 object-cover">
                                 @endif
                                 <input id="image_url" name="image_url" type="file" />
                                 <x-input-error :messages="$errors->get('image_url')" class="mt-2" />

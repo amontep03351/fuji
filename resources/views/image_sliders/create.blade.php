@@ -74,4 +74,25 @@
             </div>
         </div>
     </div>
+    <script> 
+        // CKEDITOR.replace('description_en');
+        // CKEDITOR.replace('description_jp');
+         // เริ่มต้น CKEditor
+         ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description_jp'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-app-layout>
