@@ -10,6 +10,7 @@ use App\Http\Controllers\ImageSliderController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
+use App\Http\Controllers\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/images/{id}', [ServiceImageController::class, 'destroy'])->name('service_images.destroy');
     Route::put('services/{services}/image', [ServiceController::class, 'updateImage'])->name('services.update.image');
     Route::post('/services/{services}/images', [ServiceImageController::class, 'store'])->name('service_image.store'); 
-      
+    
+    
+    
+    Route::get('/contact-us', [ContactUsController::class, 'edit'])->name('contactus.edit');
+    Route::put('/contact-us', [ContactUsController::class, 'update'])->name('contactus.update');
 });
 
 
