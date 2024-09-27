@@ -17,6 +17,7 @@ class ProductCategoryController extends Controller
     
         // ค้นหาและแบ่งหน้า
         $categories = ProductCategory::with('translations')
+            ->withCount('children')
             ->whereNull('parent_id') // แสดงเฉพาะที่ parent_id เป็น null
             ->when($search, function ($query, $search) {
                 return $query->whereHas('translations', function ($query) use ($search) {
