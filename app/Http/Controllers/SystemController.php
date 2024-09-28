@@ -39,7 +39,7 @@ class SystemController extends Controller
         $request->validate([
             'title_en' => 'required|string|max:255',
             'title_jp' => 'required|string|max:255', 
-            'image_url' => 'nullable|image|max:5120',
+            'image_url' => 'nullable|image|max:7168',
             'display_order' => 'required|integer',
             'status' => 'required|boolean',
         ]);
@@ -70,7 +70,7 @@ class SystemController extends Controller
         $request->validate([
             'title_en' => 'required|string|max:255',
             'title_jp' => 'required|string|max:255', 
-            'image_url' => 'nullable|image|max:5120',
+            'image_url' => 'nullable|image|max:7168',
             'display_order' => 'required|integer',
             'status' => 'required|boolean',
         ]);

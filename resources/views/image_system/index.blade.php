@@ -91,7 +91,7 @@
                                             <form action="{{ route('System.destroy', $System->id) }}" method="POST" class="inline ml-2">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
+                                                <button type="submit" onclick="return confirm('Are you sure you want to delete this ?')" class="text-red-600 hover:text-red-900">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

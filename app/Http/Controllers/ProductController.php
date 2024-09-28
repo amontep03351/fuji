@@ -212,7 +212,7 @@ class ProductController extends Controller
     public function updateImage(Request $request, $id)
     {
         $request->validate([
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:7168',
         ]);
    
         $product = Product::findOrFail($id);

@@ -29,19 +29,19 @@
                             <!-- Description EN -->
                             <div>
                                 <x-input-label for="description_en" :value="__('Description (EN)')" />
-                                <textarea id="description_en" name="description_en" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_en') }}</textarea>
+                                <textarea id="description_en" name="description_en" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_en') }}</textarea>
                                 <x-input-error :messages="$errors->get('description_en')" class="mt-2" />
                             </div>
 
                             <!-- Description JP -->
                             <div>
                                 <x-input-label for="description_jp" :value="__('Description (JP)')" />
-                                <textarea id="description_jp" name="description_jp" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_jp') }}</textarea>
+                                <textarea id="description_jp" name="description_jp" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_jp') }}</textarea>
                                 <x-input-error :messages="$errors->get('description_jp')" class="mt-2" />
                             </div>
 
                             <!-- Image -->
-                            <div>
+                            <div>Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image. 
                                 <x-input-label for="image_url" :value="__('Image')" />
                                 <input id="image_url" name="image_url" type="file" required />
                                 <x-input-error :messages="$errors->get('image_url')" class="mt-2" />
@@ -74,9 +74,7 @@
             </div>
         </div>
     </div>
-    <script> 
-        // CKEDITOR.replace('description_en');
-        // CKEDITOR.replace('description_jp');
+    <script>  
          // เริ่มต้น CKEditor
          ClassicEditor
             .create(document.querySelector('#description_en'))

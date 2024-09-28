@@ -43,7 +43,7 @@ class ContactUsController extends Controller
             'tel' => 'nullable|string',
             'linkfacebook' => 'nullable|url',
             'linkyoutube' => 'nullable|url',
-            'maplocation' => 'nullable|string|max:255',
+            'maplocation' => 'nullable|string',
         ]);
    
         // Convert emails and phone numbers to JSON format

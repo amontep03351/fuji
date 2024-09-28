@@ -65,7 +65,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (EN)</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (JP)</th> 
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subcategories</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subcategories</th> 
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>   
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
@@ -73,12 +73,14 @@
                             <tbody class="bg-white divide-y divide-gray-200 white:bg-gray-800">
                                 @forelse ($categories as $category)
                                     <tr data-id="{{ $category->id }}" class="sortable-row hover:bg-gray-100 white:hover:bg-gray-700 transition-colors duration-200">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $category->display_order }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $category->display_order  }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $category->translations->where('locale', 'en')->first()->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $category->translations->where('locale', 'jp')->first()->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('product-categories.subcategories.index', $category->id) }}" class="text-blue-600 hover:text-blue-900">Manage Subcategories</a>
-                                        </td>
+                                            <a href="{{ route('product-categories.subcategories.index', $category->id) }}" class="text-blue-600 hover:text-blue-900">Manage Subcategories ({{ $category->children_count  }})</a>
+
+                                        </td> 
+                                        
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <label class="inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" class="sr-only peer status-checkbox" 

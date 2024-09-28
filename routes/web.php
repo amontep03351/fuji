@@ -11,6 +11,8 @@ use App\Http\Controllers\SystemController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,17 +24,38 @@ use App\Http\Controllers\ContactUsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
  
-
+Route::get('lang/{locale}', function ($locale) {
+    if($locale=='eng'){
+        $locale ='en';
+    }
+    if (in_array($locale, ['en','jp'])) { // ตรวจสอบภาษาที่รองรับ\
+       
+        Session::put('locale', $locale);
+        App::setLocale($locale);
+    } 
+    return redirect()->back();
+})->name('setlocale');
 Route::get('/dashboard', function () {
+    
+    return redirect('cwwebadmin');
+})->name('dashboard');
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/about', [IndexController::class, 'about'])->name('about');
+Route::get('/system', [IndexController::class, 'system'])->name('system'); 
+Route::get('/system-detail/{category}', [IndexController::class, 'systemdetail'])->name('system.detail');
+Route::get('/catelist/{category}', [IndexController::class, 'catelist'])->name('catelist');
+Route::get('/product-detail/{product}', [IndexController::class, 'productdetail'])->name('product.detail');
+Route::get('/service', [IndexController::class, 'service'])->name('service');
+Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
+
+
+Route::get('/cwwebadmin', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('cwwebadmin');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

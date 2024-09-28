@@ -30,6 +30,12 @@
                     >
                         Search
                     </button>
+                    <a href="{{ route('product-categories.index') }}" class="inline-flex items-right px-4 py-2 bg-green-600 bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-full shadow-lg hover:from-green-400 hover:to-green-600 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Back
+                        </a>
                 </form> 
             </div> 
                  <!-- Table -->
@@ -54,6 +60,7 @@
                         </div>
 
                         <!-- Existing Add New button -->
+                       
                         <a href="{{ route('product-categories.create_sub', $category) }}" class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Add New Subcategory
                         </a>
