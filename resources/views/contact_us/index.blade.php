@@ -24,85 +24,144 @@
                 </div>
             @endif
 
-            <!-- Contact Us Form -->
-            <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 white:text-gray-100">
-                    <form action="{{ route('contactus.update') }}" method="POST">
-                        @csrf
-                        @method('PUT')
+            <!-- Contact Us Forms - Left (Form 1) and Right (Form 2) -->
+            <div class="flex justify-between space-x-4">
+                <!-- Left Form (Form 1) -->
+                <div class="w-1/2 bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 white:text-gray-100">
+                        <form id="form1" action="{{ route('contactus.update') }}" method="POST">
+                            @csrf
+                            @method('PUT')
 
-                        <!-- Address (EN) -->
-                        <div class="mb-6">
-                            <label for="address_en" class="block text-sm font-medium text-gray-700">Address (EN)</label>
-                            <textarea id="address_en" name="address_en" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_en', $contactUs->address_en) }}</textarea>
-                        </div>
+                            <!-- Address (EN) 1 -->
+                            <div class="mb-6">
+                                <label for="address_en_1" class="block text-sm font-medium text-gray-700">Address (EN) 1</label>
+                                <textarea id="address_en_1" name="address_en_1" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_en_1', $contactUs->address_en_1) }}</textarea>
+                            </div>
 
-                        <!-- Address (JP) -->
-                        <div class="mb-6">
-                            <label for="address_jp" class="block text-sm font-medium text-gray-700">Address (JP)</label>
-                            <textarea id="address_jp" name="address_jp" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_jp', $contactUs->address_jp) }}</textarea>
-                        </div>
-                        <!-- Mail -->
-                        <div class="mb-6">
-                            <label for="mail" class="block text-sm font-medium text-gray-700 white:text-gray-300">Email</label>
-                            <input type="text" id="mail" name="mail" value="{{ old('mail', implode(', ', json_decode($contactUs->mail, true) ?? [])) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                            <small class="text-gray-500">Separate emails with commas</small>
-                        </div>
+                            <!-- Address (JP) 1 -->
+                            <div class="mb-6">
+                                <label for="address_jp_1" class="block text-sm font-medium text-gray-700">Address (JP) 1</label>
+                                <textarea id="address_jp_1" name="address_jp_1" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_jp_1', $contactUs->address_jp_1) }}</textarea>
+                            </div>
+                            <!-- Map Location -->
+                            <div class="mb-6">
+                                <label for="map_location_1" class="block text-sm font-medium text-gray-700">Map Location (Google Maps URL)</label>
+                                <input type="url" id="map_location_1" name="map_location_1" value="{{ old('map_location_1', $contactUs->map_location_1) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
+                            <!-- Email -->
+                            <div class="mb-6">
+                                <label for="mail_1" class="block text-sm font-medium text-gray-700 white:text-gray-300">Email</label>
+                                <input type="text" id="mail_1" name="mail_1" value="{{ old('mail_1', implode(', ', json_decode($contactUs->mail_1, true) ?? [])) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <small class="text-gray-500">Separate emails with commas</small>
+                            </div>
 
-                        <!-- Telephone -->
-                        <div class="mb-6">
-                            <label for="tel" class="block text-sm font-medium text-gray-700 white:text-gray-300">Phone Numbers</label>
-                            <input type="text" id="tel" name="tel" value="{{ old('tel', implode(', ', json_decode($contactUs->tel, true) ?? [])) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                            <small class="text-gray-500">Separate phone numbers with commas</small>
-                        </div>
+                            <!-- Phone Numbers -->
+                            <div class="mb-6">
+                                <label for="tel_1" class="block text-sm font-medium text-gray-700 white:text-gray-300">Phone Numbers</label>
+                                <input type="text" id="tel_1" name="tel_1" value="{{ old('tel_1', implode(', ', json_decode($contactUs->tel_1, true) ?? [])) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                                <small class="text-gray-500">Separate phone numbers with commas</small>
+                            </div>
 
-                        <!-- Facebook Link -->
-                        <div class="mb-6">
-                            <label for="linkfacebook" class="block text-sm font-medium text-gray-700 white:text-gray-300">Facebook Link</label>
-                            <input type="text" id="linkfacebook" name="linkfacebook" value="{{ old('linkfacebook', $contactUs->linkfacebook) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        </div>
+                            <!-- Facebook Link -->
+                            <div class="mb-6">
+                                <label for="facebook_link_1" class="block text-sm font-medium text-gray-700">Facebook Link</label>
+                                <input type="url" id="facebook_link_1" name="facebook_link_1" value="{{ old('facebook_link_1', $contactUs->facebook_link_1) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
 
-                        <!-- YouTube Link -->
-                        <div class="mb-6">
-                            <label for="linkyoutube" class="block text-sm font-medium text-gray-700 white:text-gray-300">YouTube Link</label>
-                            <input type="text" id="linkyoutube" name="linkyoutube" value="{{ old('linkyoutube', $contactUs->linkyoutube) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        </div>
+                            <!-- YouTube Link -->
+                            <div class="mb-6">
+                                <label for="youtube_link_1" class="block text-sm font-medium text-gray-700">YouTube Link</label>
+                                <input type="url" id="youtube_link_1" name="youtube_link_1" value="{{ old('youtube_link_1', $contactUs->youtube_link_1) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
 
-                        <!-- Map Location -->
-                        <div class="mb-6">
-                            <label for="maplocation" class="block text-sm font-medium text-gray-700 white:text-gray-300">Map Location</label>
-                            <input type="text" id="maplocation" name="maplocation" value="{{ old('maplocation', $contactUs->maplocation) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                        </div>
+                       
 
-                        <!-- Submit Button -->
-                        <div class="flex justify-end">
-                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                Update Contact Information
-                            </button>
-                        </div>
-                    </form>
+                            <!-- Submit Button -->
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Update Form 1
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Form (Form 2) -->
+                <div class="w-1/2 bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 white:text-gray-100">
+                        <form id="form2" action="{{ route('contactus.update') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
+                            <!-- Address (EN) 2 -->
+                            <div class="mb-6">
+                                <label for="address_en_2" class="block text-sm font-medium text-gray-700">Address (EN) 2</label>
+                                <textarea id="address_en_2" name="address_en_2" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_en_2', $contactUs->address_en_2) }}</textarea>
+                            </div>
+
+                            <!-- Address (JP) 2 -->
+                            <div class="mb-6">
+                                <label for="address_jp_2" class="block text-sm font-medium text-gray-700">Address (JP) 2</label>
+                                <textarea id="address_jp_2" name="address_jp_2" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('address_jp_2', $contactUs->address_jp_2) }}</textarea>
+                            </div>
+
+                      
+ 
+                            <!-- Map Location -->
+                            <div class="mb-6">
+                                <label for="map_location_2" class="block text-sm font-medium text-gray-700">Map Location (Google Maps URL)</label>
+                                <input type="url" id="map_location_2" name="map_location_2" value="{{ old('map_location_2', $contactUs->map_location_2) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Update Form 2
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
-         // เริ่มต้น CKEditor
-         ClassicEditor
-            .create(document.querySelector('#address_en'))
+        // Initialize CKEditor for both forms
+        ClassicEditor
+            .create(document.querySelector('#address_en_1'))
             .then(editor => {
-                console.log('Editor was initialized', editor);
+                console.log('Editor 1 was initialized.', editor);
             })
             .catch(error => {
-                console.error(error);
+                console.error('There was a problem initializing the editor for Address 1:', error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#address_en_2'))
+            .then(editor => {
+                console.log('Editor 2 was initialized.', editor);
+            })
+            .catch(error => {
+                console.error('There was a problem initializing the editor for Address 2:', error);
             });
         ClassicEditor
-            .create(document.querySelector('#address_jp'))
+            .create(document.querySelector('#address_jp_1'))
             .then(editor => {
-                console.log('Editor was initialized', editor);
+                console.log('Editor 1 was initialized.', editor);
             })
             .catch(error => {
-                console.error(error);
+                console.error('There was a problem initializing the editor for Address 1:', error);
             });
-      
+
+        ClassicEditor
+            .create(document.querySelector('#address_jp_2'))
+            .then(editor => {
+                console.log('Editor 2 was initialized.', editor);
+            })
+            .catch(error => {
+                console.error('There was a problem initializing the editor for Address 2:', error);
+            });
     </script>
 </x-app-layout>

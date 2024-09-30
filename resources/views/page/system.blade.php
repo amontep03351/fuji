@@ -60,9 +60,9 @@
 
                             @foreach($System as $Sys)
                                 <div class="swiper-slide">
-                                    <figure class="rounded mb-6"><img src="{{ asset('storage/'.$Sys->image_url) }}"
-                                            srcset="{{ asset('storage/'.$Sys->image_url) }}" alt="" /><a class="item-link"
-                                            href="{{ asset('storage/'.$Sys->image_url) }}" data-glightbox
+                                    <figure class="rounded mb-6"><img src="{{ asset('storage/app/public/'.$Sys->image_url) }}"
+                                            srcset="{{ asset('storage/app/public/'.$Sys->image_url) }}" alt="" /><a class="item-link"
+                                            href="{{ asset('storage/app/public/'.$Sys->image_url) }}" data-glightbox
                                             data-gallery="projects-group"><i class="uil uil-focus-add"></i></a></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">

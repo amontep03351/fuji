@@ -28,7 +28,7 @@
                     <div class="swiper-wrapper">
                     @foreach($images as $image)
                     <div class="swiper-slide bg-overlay bg-overlay-400 bg-dark bg-image"
-                            data-image-src="{{ asset('storage'.$image->image_url) }}">
+                            data-image-src="{{ asset('storage/app/public/'.$image->image_url) }}">
                             <div class="container h-100">
                                 <div class="row h-100">
                                     <div
@@ -68,8 +68,8 @@
                             style="top: -2rem; right: -1.9rem;"></div>
                         <div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0"
                             style="bottom: -1.8rem; left: -1.5rem; width: 85%; height: 90%; "></div>
-                        <figure class="rounded"><img src="{{ asset('storage/'.$aboutUs->image) }}"
-                                srcset="{{ asset('storage/'.$aboutUs->image) }} 2x" alt=""></figure>
+                        <figure class="rounded"><img src="{{ asset('storage/app/public/'.$aboutUs->image) }}"
+                                srcset="{{ asset('storage/app/public/'.$aboutUs->image) }} 2x" alt=""></figure>
                     </div>
                     <!--/column -->
                     <div class="col-lg-5">

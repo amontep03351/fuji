@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\AboutUsController; 
 use App\Http\Controllers\ImageSliderController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\SystemImageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
 use App\Http\Controllers\ContactUsController;
@@ -100,7 +101,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('System', SystemController::class);
     Route::post('/System/update-order', [SystemController::class, 'updateOrder'])->name('System.update-order'); 
     Route::post('/System/toggle-status', [SystemController::class, 'toggleStatus'])->name('System.toggle-status');
-    
+    Route::delete('/System_images/{id}', [SystemImageController::class, 'destroy'])->name('system_images.destroy'); 
+    Route::put('System/{systems}/image', [SystemController::class, 'updateImage'])->name('system.update.image');
+    Route::post('/System/{systems}/images', [SystemImageController::class, 'store'])->name('system_image.store'); 
+
+
     Route::resource('services', ServiceController::class);      
     Route::post('/services/update-order', [ServiceController::class, 'updateOrder'])->name('services.update-order'); 
     Route::post('/services/toggle-status', [ServiceController::class, 'toggleStatus'])->name('services.toggle-status');

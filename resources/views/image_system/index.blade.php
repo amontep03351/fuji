@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 white:text-gray-200 leading-tight">
-            {{ __('System') }}
+            {{ __('Systems') }} 
         </h2>
+         
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                  <!-- Success Message -->
-                  @if (session('success'))
+            <!-- Success Message -->
+            @if (session('success'))
                 <div class="bg-green-500 text-white p-4 rounded-md shadow-md mb-6">
                     {{ session('success') }}
                 </div>
@@ -32,6 +33,7 @@
                     </button>
                 </form> 
             </div>
+
             <!-- Table -->
             <div class="bg-white white:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 white:text-gray-100">
@@ -58,46 +60,44 @@
                     <!-- Data Table -->
                     <div class="overflow-x-auto">
                         <table id="sortable-table" class="min-w-full divide-y divide-gray-200 white:divide-gray-700">
-                            <thead class="bg-gray-50">
+                            <thead class="bg-gray-50 white:bg-gray-700">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>                                                                                                                                      
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>                                                                                                                              
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title (EN)</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title (JP)</th> 
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (EN)</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (JP)</th>  
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>   
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @forelse ($image_system as $System) 
+                            <tbody class="bg-white divide-y divide-gray-200 white:bg-gray-800">
+                                @forelse ($Systems as $System)
                                     <tr data-id="{{ $System->id }}" class="sortable-row hover:bg-gray-100 white:hover:bg-gray-700 transition-colors duration-200">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 white:text-gray-100">{{ $System->display_order }}</td>
-                                           <!-- คอลัมน์รูปภาพใหม่ -->
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">
-                                            <img src="{{ asset('storage/app/public/'.$System->image_url) }}" alt="{{ $System->title_en }}" class="w-12 h-12 object-cover rounded-full">
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $System->title_en }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $System->title_jp }}</td> 
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium"> 
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $System->name_en }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 white:text-gray-400">{{ $System->name_jp }}</td>
+                                  
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <label class="inline-flex items-center cursor-pointer">
                                                 <input type="checkbox" class="sr-only peer status-checkbox" 
                                                     data-id="{{ $System->id }}"
                                                     {{ $System->status === 1 ? 'checked' : '' }}>
                                                 <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 white:peer-focus:ring-blue-800 rounded-full peer white:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all white:border-gray-600 peer-checked:bg-blue-600"></div>
                                             </label>
-                                        </td>  
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
-                                            <a href="{{ route('System.edit', $System->id) }}" class="text-indigo-600 hover:text-indigo-900 ml-2">Edit</a>
-                                            <form action="{{ route('System.destroy', $System->id) }}" method="POST" class="inline ml-2">
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4"> 
+                                            <a href="{{ route('System.edit', $System) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+
+                                            <!-- Delete Form -->
+                                            <form action="{{ route('System.destroy', $System) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Are you sure you want to delete this ?')" class="text-red-600 hover:text-red-900">Delete</button>
+                                                <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this System?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="px-6 py-4 text-center text-sm text-gray-500 white:text-gray-400">No System found</td>
+                                        <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500 white:text-gray-400">No service found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -106,13 +106,13 @@
          
                     <!-- Pagination --> 
                     <div class="mt-6">
-                    {{ $image_system->appends(request()->except('page'))->links() }}
+                        {{ $Systems->appends(['rows_per_page' => request('rows_per_page')])->links() }}
                     </div>
                 </div>
             </div>
-             
         </div>
     </div>
+
     <!-- Script for SortableJS -->
     <script>
         $(document).ready(function() {
@@ -121,7 +121,7 @@
                 var id = checkbox.data('id');
                 var status = checkbox.is(':checked') ? 1 : 0; // 1 for active, 0 for inactive
                 document.getElementById('loading-spinner').classList.remove('hidden');
-                fetch('{{ route('System.toggle-status') }}', {
+                fetch('{{ route('services.toggle-status') }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@
                     let sortedIDs = Array.from(document.querySelectorAll('#sortable-table tbody .sortable-row'))
                         .map(row => row.getAttribute('data-id'));
                     
-                    fetch('{{ route('System.update-order') }}', {
+                    fetch('{{ route('services.update-order') }}', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -302,7 +302,7 @@
                         <div class="form-select-wrapper">
                         @if(isset($CateSub[$CategId]))
                             <select class="form-select">
-                                @forelse ($CateSub[$Main['id']] as $Sub)
+                                @forelse ($CateSub[$CategId] as $Sub)
                                     <option value="{{ route('catelist', $Main['id']) }}">{{ $Sub['name']}}</option>
                                      
                                 @empty

@@ -42,7 +42,7 @@
                             </div>
 
                             <!-- Image -->
-                            <div>
+                            <div><p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
                                 <x-input-label for="image_url" :value="__('Image')" />
                                 @if ($imageSlider->image_url)
                                     <img src="{{ asset('storage/app/public/'.$imageSlider->image_url) }}" alt="Image" class="w-24 h-24 object-cover">

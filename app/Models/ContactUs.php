@@ -14,13 +14,16 @@ class ContactUs extends Model
 
     // Define which attributes are mass assignable
     protected $fillable = [
-        'address_en', 
-        'address_jp', 
-        'mail', 
-        'tel', 
-        'linkfacebook', 
-        'linkyoutube', 
-        'maplocation'
+        'address_en_1',
+        'address_en_2',
+        'address_jp_1',
+        'address_jp_2',
+        'mail',
+        'tel',
+        'linkfacebook',
+        'linkyoutube',
+        'map_location_1',
+        'map_location_2',
     ];
 
     // If you want to automatically cast JSON fields back to arrays

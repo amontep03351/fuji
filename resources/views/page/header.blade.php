@@ -88,24 +88,26 @@
                     </div>
                     <!-- /.offcanvas-body -->
                     <div class="navbar-other w-100 d-flex ms-auto">
-                        <ul class="navbar-nav flex-row align-items-center ms-auto"> 
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                        
                             <li class="me-2">
-                            <a href="{{ route('setlocale', 'eng') }}">
-                                @if(Session::get('locale', config('app.locale')) === 'jp')
-                                    <img src="../assets/img/flag/us-inactive.png" alt="japanese" style="height: 30px;" />
-                                @else
-                                    <img src="../assets/img/flag/us.png" alt="english" style="height: 30px;" />
-                                @endif
-                                </a>
+                                <a href="{{ route('setlocale', 'eng') }}">
+                                    @if(Session::get('locale', config('app.locale')) === 'jp')
+                                        <img src="../assets/img/flag/us-inactive.png" alt="japanese" style="height: 30px;" />
+                                    @else
+                                        <img src="../assets/img/flag/us.png" alt="english" style="height: 30px;" />
+                                    @endif
+                                    </a>
                             </li>
-                            <li><a href="{{ route('setlocale', 'jp') }}">
+                            <li>
+                                <a href="{{ route('setlocale', 'jp') }}">
                                 @if(Session::get('locale', config('app.locale')) === 'en')
                                     <img src="../assets/img/flag/jp-inactive.png" alt="japanese" style="height: 30px;" />
                                 @else
                                     <img src="../assets/img/flag/jp.png" alt="english" style="height: 30px;" />
                                 @endif
                                 </a>
-                            </li>
+                            </li>            
                             <li class="nav-item d-lg-none">
                                 <button class="hamburger offcanvas-nav-btn"><span></span></button>
                             </li>

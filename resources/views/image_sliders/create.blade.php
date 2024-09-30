@@ -41,7 +41,7 @@
                             </div>
 
                             <!-- Image -->
-                            <div>Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image. 
+                            <div><p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
                                 <x-input-label for="image_url" :value="__('Image')" />
                                 <input id="image_url" name="image_url" type="file" required />
                                 <x-input-error :messages="$errors->get('image_url')" class="mt-2" />
@@ -74,7 +74,9 @@
             </div>
         </div>
     </div>
-    <script>  
+    <script> 
+        // CKEDITOR.replace('description_en');
+        // CKEDITOR.replace('description_jp');
          // เริ่มต้น CKEditor
          ClassicEditor
             .create(document.querySelector('#description_en'))

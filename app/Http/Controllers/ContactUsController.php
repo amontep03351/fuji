@@ -9,20 +9,25 @@ class ContactUsController extends Controller
 {
     /**
      * Show the form for editing the contact information.
+     * 
+     * เหลืออัพเดทฟิว
      */
     public function edit()
     {
         $contactUs = ContactUs::first();
 
         if (!$contactUs) {
-            $contactUs = ContactUs::create([
-                'address_en' => '',
-                'address_jp' => '',
+            $contactUs = ContactUs::create([  
+                'address_en_1' => '',
+                'address_en_2' => '',
+                'address_jp_1' => '',
+                'address_jp_2' => '',
                 'mail' => json_encode([]),
                 'tel' => json_encode([]),
                 'linkfacebook' => '',
-                'linkyoutube' => '',
-                'maplocation' => ''
+                'linkyoutube'  => '',
+                'map_location_1' => '',
+                'map_location_2' => '',
             ]);
         }
     
@@ -37,31 +42,37 @@ class ContactUsController extends Controller
     {
         // Validate the request
         $request->validate([
-            'address_en' => 'required|max:255',
-            'address_jp' => 'required|max:255',
-            'mail' => 'nullable|email',
-            'tel' => 'nullable|string',
-            'linkfacebook' => 'nullable|url',
-            'linkyoutube' => 'nullable|url',
-            'maplocation' => 'nullable|string',
+            'address_en_1' => 'required|max:255',
+            'address_jp_1' => 'required|max:255',
+            'address_en_2' => 'required|max:255',
+            'address_jp_2' => 'required|max:255',
+            'mail_1' => 'nullable|email',
+            'tel_1' => 'nullable|string',
+            'facebook_link_1' => 'nullable|url',
+            'youtube_link_1' => 'nullable|url',
+            'map_location_1' => 'nullable|string',
+            'map_location_2' => 'nullable|string',
         ]);
    
         // Convert emails and phone numbers to JSON format
-        $mail = array_map('trim', explode(',', $request->input('mail', '')));
-        $tel = array_map('trim', explode(',', $request->input('tel', '')));
+        $mail = array_map('trim', explode(',', $request->input('mail_1', '')));
+        $tel = array_map('trim', explode(',', $request->input('tel_1', '')));
 
         // Fetch the contact information (assuming there's only one entry)
         $contactUs = ContactUs::first();
 
         // Update the contact information
         $contactUs->update([
-            'address_en' => $request->input('address_en'),
-            'address_jp' => $request->input('address_jp'),
+            'address_en_1' => $request->input('address_en_1'),
+            'address_en_2' => $request->input('address_en_2'),
+            'address_jp_1' => $request->input('address_jp_1'),
+            'address_jp_2' => $request->input('address_jp_2'),
             'mail' => json_encode($mail),
             'tel' => json_encode($tel),
-            'linkfacebook' => $request->input('linkfacebook'),
-            'linkyoutube' => $request->input('linkyoutube'),
-            'maplocation' => $request->input('maplocation'),
+            'linkfacebook' => $request->input('facebook_link_1'),
+            'linkyoutube' => $request->input('youtube_link_1'),
+            'map_location_1' => $request->input('map_location_1'),
+            'map_location_2' => $request->input('map_location_2'),
         ]);
 
         // Redirect back with success message

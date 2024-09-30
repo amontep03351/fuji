@@ -38,14 +38,14 @@
                             </div>
                             <div>
                                 <label for="description_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (EN)</label>
-                                <textarea name="description_en" id="description_en" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_en') }}</textarea>
+                                <textarea name="description_en" id="description_en" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_en') }}</textarea>
                                 @error('description_en')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div>
                                 <label for="description_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (JP)</label>
-                                <textarea name="description_jp" id="description_jp" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_jp') }}</textarea>
+                                <textarea name="description_jp" id="description_jp" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_jp') }}</textarea>
                                 @error('description_jp')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror

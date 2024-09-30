@@ -11,55 +11,108 @@
                 <div class="p-6 text-gray-900 white:text-gray-100">
                     <form method="POST" action="{{ route('System.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Title EN -->
+                        
+                        <!-- Name and Description -->
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
-                                <x-input-label for="title_en" :value="__('Title (EN)')" />
-                                <x-text-input id="title_en" name="title_en" type="text" value="{{ old('title_en') }}" required autofocus />
-                                <x-input-error :messages="$errors->get('title_en')" class="mt-2" />
+                                <label for="name_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">Name (EN)</label>
+                                <input type="text" name="name_en" id="name_en" value="{{ old('name_en') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+                                @error('name_en')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
-
-                            <!-- Title JP -->
                             <div>
-                                <x-input-label for="title_jp" :value="__('Title (JP)')" />
-                                <x-text-input id="title_jp" name="title_jp" type="text" value="{{ old('title_jp') }}" required />
-                                <x-input-error :messages="$errors->get('title_jp')" class="mt-2" />
+                                <label for="name_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">Name (JP)</label>
+                                <input type="text" name="name_jp" id="name_jp" value="{{ old('name_jp') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+                                @error('name_jp')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
-
-                            
-
-                            <!-- Image -->
                             <div>
-                                <x-input-label for="image_url" :value="__('Image')" />
-                                <input id="image_url" name="image_url" type="file" required />
-                                <x-input-error :messages="$errors->get('image_url')" class="mt-2" />
+                                <label for="description_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (EN)</label>
+                                <textarea name="description_en" id="description_en" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_en') }}</textarea>
+                                @error('description_en')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
-
-                            <!-- Display Order -->
                             <div>
-                                <x-input-label for="display_order" :value="__('Display Order')" />
-                                <x-text-input id="display_order" name="display_order" type="number" min="0" value="{{ old('display_order') }}" required />
-                                <x-input-error :messages="$errors->get('display_order')" class="mt-2" />
+                                <label for="description_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (JP)</label>
+                                <textarea name="description_jp" id="description_jp" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_jp') }}</textarea>
+                                @error('description_jp')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
+                            <!-- เลือกหมวดหมู่ --> 
+                        </div>
+                        
+                        <!-- Display Order and Status -->
+                        <div class="mt-6">
+                            <label for="display_order" class="block text-sm font-medium text-gray-700 white:text-gray-300">Display Order</label>
+                            <input type="number" name="display_order" id="display_order" value="{{ old('display_order') }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+                            @error('display_order')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                            <!-- Status -->
-                            <div>
-                                <x-input-label for="status" :value="__('Status')" />
-                                <select id="status" name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
-                                    <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
-                                    <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
-                                </select>
-                                <x-input-error :messages="$errors->get('status')" class="mt-2" />
-                            </div>
+                        <div class="mt-6">
+                            <label for="status" class="block text-sm font-medium text-gray-700 white:text-gray-300">Status</label>
+                            <select name="status" id="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
+                                <option value="1" {{ old('status') === '1' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ old('status') === '0' ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                            @error('status')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <!-- Main Image Upload -->
+                        <div class="mt-6">
+                            <label for="main_image" class="block text-sm font-medium text-gray-700 white:text-gray-300">Main Product Image</label>
+                            <input type="file" name="main_image" id="main_image" class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 white:file:bg-gray-800 white:file:text-gray-400 white:hover:file:bg-gray-700">
+                            @error('main_image')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
+                        </div> 
+ 
+                        <!-- Images Upload -->
+                        <div class="mt-6">
+                            <label for="images" class="block text-sm font-medium text-gray-700 white:text-gray-300">Product Images</label>
+                            <input type="file" name="images[]" id="images" multiple class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 white:file:bg-gray-800 white:file:text-gray-400 white:hover:file:bg-gray-700">
+                            @error('images.*')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>
+                        </div>
 
-                            <!-- Submit -->
-                            <div class="flex items-center justify-end">
-                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create</button>
-                            </div>
+                        <!-- Submit Button -->
+                        <div class="mt-6">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Create System
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>  
+         // เริ่มต้น CKEditor
+         ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#description_jp'))
+            .then(editor => {
+                console.log('Editor was initialized', editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+      
+    </script>
 </x-app-layout>

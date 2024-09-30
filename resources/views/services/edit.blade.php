@@ -31,14 +31,14 @@
                             </div>
                             <div>
                                 <label for="description_en" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (EN)</label>
-                                <textarea name="description_en" id="description_en" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_en', $service->description_en) }}</textarea>
+                                <textarea name="description_en" id="description_en" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_en', $service->description_en) }}</textarea>
                                 @error('description_en')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div>
                                 <label for="description_jp" class="block text-sm font-medium text-gray-700 white:text-gray-300">Description (JP)</label>
-                                <textarea name="description_jp" id="description_jp" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>{{ old('description_jp', $service->description_jp) }}</textarea>
+                                <textarea name="description_jp" id="description_jp" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  >{{ old('description_jp', $service->description_jp) }}</textarea>
                                 @error('description_jp')
                                     <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -67,7 +67,7 @@
                         <!-- Submit Button -->
                         <div class="mt-6">
                             <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                Update Product
+                                Update Service
                             </button>
                         </div>
                         </form>
