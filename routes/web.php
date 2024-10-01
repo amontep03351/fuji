@@ -120,7 +120,7 @@ Route::middleware('auth')->group(function () {
     Route::put('services/{services}/image', [ServiceController::class, 'updateImage'])->name('services.update.image');
     Route::post('/services/{services}/images', [ServiceImageController::class, 'store'])->name('service_image.store'); 
     Route::get('/services/{service}/related', [RelatedServiceController::class, 'index'])->name('services.related.index');
-Route::post('/services/{service}/related/save', [RelatedServiceController::class, 'saveRelatedServices'])->name('services.related.save');
+    Route::post('/services/{service}/related/save', [RelatedServiceController::class, 'saveRelatedServices'])->name('services.related.save');
     
     
     Route::get('/contact-us', [ContactUsController::class, 'edit'])->name('contactus.edit');
