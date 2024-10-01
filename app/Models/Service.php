@@ -23,4 +23,9 @@ class Service extends Model
     {
         return $this->hasMany(ServiceImage::class, 'service_id');
     }
+ 
+    public function relatedServices()
+    {
+        return $this->hasMany(RelatedService::class);
+    }
 }

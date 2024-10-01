@@ -13,6 +13,7 @@ use App\Http\Controllers\SystemController;
 use App\Http\Controllers\SystemImageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceImageController;
+use App\Http\Controllers\RelatedServiceController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Session;
@@ -118,7 +119,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/images/{id}', [ServiceImageController::class, 'destroy'])->name('service_images.destroy');
     Route::put('services/{services}/image', [ServiceController::class, 'updateImage'])->name('services.update.image');
     Route::post('/services/{services}/images', [ServiceImageController::class, 'store'])->name('service_image.store'); 
-    
+    Route::get('/services/{service}/related', [RelatedServiceController::class, 'index'])->name('services.related.index');
+Route::post('/services/{service}/related/save', [RelatedServiceController::class, 'saveRelatedServices'])->name('services.related.save');
     
     
     Route::get('/contact-us', [ContactUsController::class, 'edit'])->name('contactus.edit');
