@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController; 
 use App\Http\Controllers\ProductImageController; 
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\RelatedProductController; 
 use App\Http\Controllers\AboutUsController; 
 use App\Http\Controllers\ImageSliderController;
 use App\Http\Controllers\SystemController;
@@ -88,6 +90,10 @@ Route::middleware('auth')->group(function () {
     Route::put('products/{product}/image', [ProductController::class, 'updateImage'])->name('products.update.image');
     Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('images.store'); 
     Route::post('/products/toggle-status', [ProductController::class, 'toggleStatus'])->name('product.toggle-status');  
+    Route::delete('/pdf/{id}', [PdfController::class, 'destroy'])->name('pdf.destroy');
+    Route::post('products/{product}/pdfs', [PdfController::class, 'addFilePdf'])->name('pdfs.add'); 
+    Route::get('/products/relate-management/{product}', [RelatedProductController::class, 'index'])->name('products.relate-management'); 
+    Route::post('/products/{productId}/related-products', [RelatedProductController::class, 'saveRelatedProducts'])->name('products.save-related-products');
 
 
     Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus.index');

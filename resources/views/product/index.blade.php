@@ -65,6 +65,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (EN)</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name (JP)</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th> 
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relate Management</th> <!-- คอลัมน์ใหม่ -->
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
@@ -81,7 +82,10 @@
                                                     {{ $product->status === '1' ? 'checked' : '' }}>
                                                 <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 white:peer-focus:ring-blue-800 rounded-full peer white:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all white:border-gray-600 peer-checked:bg-blue-600"></div>
                                             </label>
-                                        </td>                      
+                                        </td>           
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <a href="{{ route('products.relate-management', $product->id) }}" class="text-blue-600 hover:text-blue-900">Manage</a> <!-- ปุ่มจัดการ -->
+                                        </td>           
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex space-x-4">
                                             <a href="{{ route('products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
 

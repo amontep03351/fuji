@@ -30,7 +30,7 @@ class ServiceController extends Controller
                       ->orWhere('description_jp', 'like', "%{$search}%");
                 });
             })
-            ->orderBy('id', $sortOrder) // เปลี่ยนเป็น field ที่ต้องการเรียงลำดับ
+            ->orderBy('display_order', $sortOrder) // เปลี่ยนเป็น field ที่ต้องการเรียงลำดับ
             ->paginate($rowsPerPage);
     
         // ส่งข้อมูลไปยัง View

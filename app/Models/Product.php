@@ -33,4 +33,15 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id');
     }
+
+    public function pdfs()
+    {
+        return $this->hasMany(ProductPdf::class);
+    }
+
+    public function relatedProducts()
+    {
+        return $this->hasMany(RelatedProduct::class, 'product_id');
+    }
+ 
 }

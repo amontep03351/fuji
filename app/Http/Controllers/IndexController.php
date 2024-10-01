@@ -25,32 +25,7 @@ class IndexController extends Controller
        
     }
     public function index()
-    {
-        $ipAddress = request()->ip(); // รับค่า IP ของผู้เข้าชม
-        $visit = Visit::where('ip_address', $ipAddress)->first(); 
-        if (!$visit) {
-            // ถ้ายังไม่เคยเข้ามา ให้บันทึก
-            Visit::create(['ip_address' => $ipAddress]);
-        }
-        // นับจำนวนผู้เข้าชมทั้งหมด
-            $totalVisits = Visit::count();
-
-            // นับจำนวนผู้เข้าชมวันนี้
-            $todayVisits = Visit::whereDate('created_at', Carbon::today())->count();
-
-            // นับจำนวนผู้เข้าชมเดือนนี้
-            $monthVisits = Visit::whereMonth('created_at', Carbon::now()->month)
-                                ->whereYear('created_at', Carbon::now()->year)
-                                ->count(); 
-
-        if (!$visit) {
-            // ถ้ายังไม่เคยเข้ามา ให้บันทึก
-            Visit::create(['ip_address' => $ipAddress]);
-        }
-
-        // นับจำนวนผู้เข้าชมทั้งหมด
-        $totalVisits = Visit::count();
-
+    { 
         $images = ImageSlider::where('status', 1)
         ->orderBy('display_order', 'asc')
         ->get(); 

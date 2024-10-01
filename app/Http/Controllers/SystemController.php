@@ -30,7 +30,7 @@ class SystemController extends Controller
                       ->orWhere('description_jp', 'like', "%{$search}%");
                 });
             })
-            ->orderBy('id', $sortOrder) // เปลี่ยนเป็น field ที่ต้องการเรียงลำดับ
+            ->orderBy('display_order', $sortOrder) // เปลี่ยนเป็น field ที่ต้องการเรียงลำดับ
             ->paginate($rowsPerPage);
     
         // ส่งข้อมูลไปยัง View
@@ -211,7 +211,7 @@ class SystemController extends Controller
         $sortedIDs = $request->input('sortedIDs');
 
         foreach ($sortedIDs as $index => $id) {
-            Service::where('id', $id)->update(['display_order' => $index + 1]);
+            System::where('id', $id)->update(['display_order' => $index + 1]);
         } 
         return response()->json(['success' => true]);
     } 
@@ -219,7 +219,7 @@ class SystemController extends Controller
     {
         $id = $request->input('id');
         $status = $request->input('status');
-        Service::where('id', $id)->update(['status' => $status]);
+        System::where('id', $id)->update(['status' => $status]);
         return response()->json(['success' => true]);
     }
 }

@@ -106,6 +106,68 @@
                                 </span>
                             </div>      
                         @endif
+                        
+                        <h3>Pdf files</h3> 
+                        <!-- Additional Pdf -->
+                        <form action="{{ route('pdfs.add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf 
+
+                            <!-- PDF Files Upload -->
+                            <div class="mt-6">
+                                <label for="pdf_files" class="block text-sm font-medium text-gray-700 white:text-gray-300">Upload PDF Files</label>
+                                <input type="file" name="pdf_files[]" id="pdf_files" required multiple class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 white:file:bg-gray-800 white:file:text-gray-400 white:hover:file:bg-gray-700" accept=".pdf">
+                                @error('pdf_files.*')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                                <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file type: PDF. Maximum file size: 5 MB per file.</p>
+                            </div>
+
+                            <!-- Your other fields here -->
+
+                            <button type="submit" class="mt-4 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Update PDF</button>
+                        </form>
+
+                        <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <!-- Loop through existing Pdf -->
+                            @if($pdfFiles->count() > 0)
+                                <table class="min-w-full border-collapse border border-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="border border-gray-300 px-4 py-2">File Name</th>
+                                            <th class="border border-gray-300 px-4 py-2">Created At</th>
+                                            <th class="border border-gray-300 px-4 py-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($pdfFiles as $index => $pdf)
+                                            <tr>
+                                                <td class="border border-gray-300 px-4 py-2">
+                                                    <a href="{{ asset('storage/' . $pdf->pdf_url) }}" target="_blank" class="text-blue-600 hover:text-blue-800">
+                                                     {{ 'File ' . ($index + 1) }}
+                                                    </a>
+                                                </td>
+                                                <td class="border border-gray-300 px-4 py-2">
+                                                    {{ $pdf->created_at->format('d M Y H:i') }}
+                                                </td>
+                                                <td class="border border-gray-300 px-4 py-2">
+                                                    <form action="{{ route('pdf.destroy', $pdf->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this file?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-red-600 hover:text-red-800">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p>No PDF files associated with this product.</p>
+                            @endif
+                           
+                        </div>
+                        <hr class="my-6 border-gray-300 white:border-gray-700">
                         <!-- Main Image -->
                         <h3>Main Image</h3>
                         <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file types: jpeg, png, jpg. Maximum file size: 5 MB per image.</p>

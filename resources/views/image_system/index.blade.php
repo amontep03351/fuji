@@ -121,7 +121,7 @@
                 var id = checkbox.data('id');
                 var status = checkbox.is(':checked') ? 1 : 0; // 1 for active, 0 for inactive
                 document.getElementById('loading-spinner').classList.remove('hidden');
-                fetch('{{ route('services.toggle-status') }}', {
+                fetch('{{ route('System.toggle-status') }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@
                     let sortedIDs = Array.from(document.querySelectorAll('#sortable-table tbody .sortable-row'))
                         .map(row => row.getAttribute('data-id'));
                     
-                    fetch('{{ route('services.update-order') }}', {
+                    fetch('{{ route('System.update-order') }}', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

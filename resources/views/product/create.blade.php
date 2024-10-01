@@ -82,6 +82,17 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <!-- PDF Files Upload --> 
+                        <div class="mt-6">
+                            <label for="pdf_files" class="block text-sm font-medium text-gray-700 white:text-gray-300">Upload PDF Files</label>
+                            <input type="file" name="pdf_files[]" id="pdf_files" multiple class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:border file:border-gray-300 file:rounded-md file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 white:file:bg-gray-800 white:file:text-gray-400 white:hover:file:bg-gray-700" accept=".pdf">
+                            @error('pdf_files.*')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                            <p class="mt-2 text-sm text-gray-500 white:text-gray-400">Allowed file type: PDF. Maximum file size: 5 MB per file.</p>
+                        </div>
+
+
                         <!-- Main Image Upload -->
                         <div class="mt-6">
                             <label for="main_image" class="block text-sm font-medium text-gray-700 white:text-gray-300">Main Product Image</label>

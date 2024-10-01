@@ -5,6 +5,7 @@ use App\Models\Product;
 use App\Models\ProductCategoryTranslation;
 use App\Models\ProductCategory;
 use App\Models\ProductImage;
+use App\Models\ProductPdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -71,6 +72,7 @@ class ProductController extends Controller
             'status' => 'required|boolean',
             'main_image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Validation for main image
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Validation for additional images
+            'pdf_files.*' => 'nullable|mimes:pdf|max:5120', // Validation for PDF files
         ]);
     
         if ($validator->fails()) {
@@ -113,7 +115,16 @@ class ProductController extends Controller
                 ]);
             }
         }
-    
+        // Handle PDF file uploads
+        if ($request->hasFile('pdf_files')) {
+            foreach ($request->file('pdf_files') as $pdfFile) {
+                $pdfPath = $pdfFile->store('uploads/pdf', 'public');
+                ProductPdf::create([
+                    'product_id' => $product->id,
+                    'pdf_url' => $pdfPath,
+                ]);
+            }
+        }
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
@@ -139,8 +150,9 @@ class ProductController extends Controller
         // ดึงข้อมูลหมวดหมู่ทั้งหมดพร้อมกับการแปล
         $categories = ProductCategory::with('translations')->get();
         $images = $product->images;
+        $pdfFiles = $product->pdfs;
         // ส่งข้อมูลผลิตภัณฑ์และหมวดหมู่ไปยัง View
-        return view('product.edit', compact('product', 'categories', 'images'));
+        return view('product.edit', compact('product', 'categories', 'images','pdfFiles'));
     }
 
     /**
@@ -238,4 +250,11 @@ class ProductController extends Controller
         Product::where('id', $id)->update(['status' => $status]);
         return response()->json(['success' => true]);
     }
+    public function relateManagement(Request $request)
+    { 
+        // echo 1;
+        // return view('product.relate-management');
+    }
+
+    
 }

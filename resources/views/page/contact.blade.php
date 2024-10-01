@@ -169,7 +169,7 @@
                                 </div>
                                 <!-- /column -->
                                 <div class="col-md-6">
-                                    <div class="form-select-wrapper mb-4"> 
+                                    <!-- <div class="form-select-wrapper mb-4"> 
                                         <select class="form-select" id="form-select" name="department" required>
                                             <option selected disabled value="">{{ __('messages.tcSelectaDepartment') }}</option>
                                             <option value="{{ __('messages.tcSales') }}">{{ __('messages.tcSales') }}</option>
@@ -178,7 +178,7 @@
                                         </select>
                                         <div class="valid-feedback">{{ __('messages.tcLooksgood') }}</div>
                                         <div class="invalid-feedback">{{ __('messages.tcPleaseselectadepartment') }}</div> 
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!-- /column -->
                                 <div class="col-12">
