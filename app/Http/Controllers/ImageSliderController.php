@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\ImageSlider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Storage; 
 class ImageSliderController extends Controller
 {
     public function index(Request $request)
     {
+         
         $search = $request->input('search');
         $perPage = $request->input('perPage', 10);
 

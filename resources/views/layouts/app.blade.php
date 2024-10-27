@@ -64,15 +64,13 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css" />
- 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
         <!-- Scripts --> 
-        <link rel="stylesheet" href="{{ asset('build/assets/app-1fc221b5.css') }}">
-        <script src="{{ asset('build/assets/app-c295b1f0.js') }}" defer></script>
+        <link rel="stylesheet" href="{{ asset('public/build/assets/app-1fc221b5.css') }}">
+        <script src="{{ asset('public/build/assets/app-c295b1f0.js') }}" defer></script>
 
     </head>
     <body class="font-sans antialiased"> 
