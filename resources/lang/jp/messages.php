@@ -31,4 +31,8 @@ return [
     'tCategory'=>  'カテゴリ',
     'tProduct'=>  '製品',
     'tReadmore' =>  '続きを読む',
+    'twwd'=> '私たちが何をするのか?',
+    'tHeadService' =>  '当社が提供するサービスは、お客様のニーズを満たすように特別に設計されています。',
+    'tRelate' =>'関係する'
+    
 ];

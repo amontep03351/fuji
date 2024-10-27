@@ -272,7 +272,7 @@
                                 <a href="#" class="hover" rel="category">{{ __('messages.nav_system') }}</a>
                             </div>
                             <!-- /.post-category -->
-                            <h1 class="display-1 mb-4">{{ $systems->{'title_' . app()->getLocale()} }}</h1>
+                            <h1 class="display-1 mb-4">{{ $systems->{'name_' . app()->getLocale()} }}</h1>
                             <!-- <ul class="post-meta mb-5">
                                 <li class="post-date"><i class="uil uil-calendar-alt"></i><span>5 Jul 2022</span></li>
                             </ul> -->
@@ -293,13 +293,26 @@
                     <div class="col-lg-10 mx-auto">
                         <div class="blog single mt-n17">
                             <div class="card">
-                                <figure class="card-img-top"><img src="{{ asset('storage/app/public/'.$systems->image_url) }}" alt="" /></figure>
+                                <figure class="card-img-top"><img src="{{ asset('storage/app/public/'.$systems->system_image) }}" alt="" /></figure>
                                 <div class="card-body">
                                     <div class="classic-view">
                                         <article class="post">
                                             <div class="post-content mb-5">
-                                                <!-- <h2 class="h1 mb-4">{{ $systems->{'title_' . app()->getLocale()} }}</h2> -->
-                                                
+                                                 <h2 class="h1 mb-4">{{ $systems->{'name_' . app()->getLocale()} }}</h2>
+                                                 <p>
+                                                 {{ $systems->{'description_' . app()->getLocale()} }}
+                                                 <div class="row g-6 mt-3 mb-10">
+                                                    @foreach ($images as $image)
+                                                        <div class="col-md-6">  
+                                                        <figure class="hover-scale rounded cursor-dark"><a
+                                                                href="{{ asset('storage/app/public/'.$image->image_url) }}"
+                                                                data-glightbox="{{ $systems->{'name_' . app()->getLocale()} }}"
+                                                                data-gallery="post"> <img
+                                                                    src="{{ asset('storage/app/public/'.$image->image_url) }}" alt="" /></a>
+                                                        </figure>
+                                                        </div> 
+                                                    @endforeach 
+                                                </div>
                                             </div>
                                             <!-- /.post-content -->
                                         </article>
@@ -326,8 +339,8 @@
     <!-- /.content-wrapper --> 
     @include('page.footer')
     @include('page.progresswrap')
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="//../assets/js/plugins.js"></script>
+    <script src="//../assets/js/theme.js"></script>
 </body>
 
 </html>

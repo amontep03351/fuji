@@ -19,7 +19,7 @@
 <body>
     <div class="content-wrapper">
 
-        <header class="wrapper bg-soft-primary">
+    <header class="wrapper bg-soft-primary">
             <nav class="navbar navbar-expand-lg classic transparent navbar-light">
                 <div class="container flex-lg-row flex-nowrap align-items-center">
                     <div class="navbar-brand w-100 py-2">
@@ -261,19 +261,24 @@
             </div>
             <!-- /.offcanvas -->
         </header>
-
-         <section class="wrapper bg-soft-primary">
-            <div class="container pt-6 pb-14 text-center">
+         
+          <!-- Content -->
+        <section class="wrapper bg-soft-primary">
+            <div class="container pt-10 pb-19 pt-md-14 pb-md-20 text-center">
                 <div class="row">
-                    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-5 mx-auto">
-                        <h1 class="display-1 mb-3">{{ __('messages.tListpage') }}</h1>
-                        <nav class="d-inline-block" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="./index.html">{{ __('messages.nav_home') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ __('messages.tListpage') }}</li>
-                            </ol>
-                        </nav>
-                        <!-- /nav -->
+                    <div class="col-md-10 col-xl-8 mx-auto">
+                        <div class="post-header">
+                            <div class="post-category text-line">
+                                <a href="#" class="hover" rel="category">{{ __('messages.nav_service') }}</a>
+                            </div>
+                            <!-- /.post-category -->
+                            <h1 class="display-1 mb-4">{{ $service->{'name_' . app()->getLocale()} }}</h1>
+                            <!-- <ul class="post-meta mb-5">
+                                <li class="post-date"><i class="uil uil-calendar-alt"></i><span>5 Jul 2022</span></li>
+                            </ul> -->
+                            <!-- /.post-meta -->
+                        </div>
+                        <!-- /.post-header -->
                     </div>
                     <!-- /column -->
                 </div>
@@ -281,96 +286,87 @@
             </div>
             <!-- /.container -->
         </section>
-
-        <!-- Content -->
         <!-- /section -->
         <section class="wrapper bg-light">
-            <div class="container py-14 py-md-16">
-                <div class="row align-items-center mb-10 position-relative zindex-1">
-                    <div class="col-md-8 col-lg-9 col-xl-8 col-xxl-7 pe-xl-20">
-                        <h2 class="display-6">{{ __('messages.tCategory') }}</h2>
-                        <nav class="d-inline-block" aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">{{ __('messages.nav_home') }}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ __('messages.tProduct') }}</li>
-                            </ol>
-                        </nav>
-                        <!-- /nav -->
-                    </div>
-                    <!--/column -->
-                    <div class="col-md-4 col-lg-3 ms-md-auto text-md-end mt-5 mt-md-0">
-                        <div class="form-select-wrapper">
-                        @if(isset($CateSub[$CategId]))
-                            <select class="form-select">
-                                @forelse ($CateSub[$CategId] as $Sub)
-                                    <option value="{{ route('catelist', $Main['id']) }}">{{ $Sub['name']}}</option>
-                                     
-                                @empty
-                                @endforelse 
-                                
-                                
-                            </select>
-                             
-                        @else
-                             
-                        @endif
-                            
-                        </div>
-                        <!--/.form-select-wrapper -->
-                    </div>
-                    <!--/column -->
-                </div>
-                <!--/.row -->
-                <div class="grid grid-view projects-masonry shop mb-13">
-                    <div class="row gx-md-8 gy-10 gy-md-13 isotope">
-                    @forelse ($products as $product)
-                        <div class="project item col-md-4 col-xl-3">
-                            <figure class="rounded mb-6">
-                                <img src="{{ asset('storage/app/public/'.$product->product_image) }}" srcset="{{ asset('storage/app/public/'.$product->product_image) }}"
-                                    alt="" />
-                                <a href="{{ route('product.detail', $product->id) }}" class="item-cart"><i class="uil uil-shopping-bag"></i>{{ __('messages.tReadmore') }}</a>
-                            </figure>
-                            <div class="post-header">
-                                <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-                                    <div class="post-category text-ash mb-0">{{ __('messages.tCategory') }}</div>
+            <div class="container pb-14 pb-md-16">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="blog single mt-n17">
+                            <div class="card">
+                                <figure class="card-img-top"><img src="{{ asset('storage/app/public/'.$service->service_image) }}" alt="" /></figure>
+                                <div class="card-body">
+                                    <div class="classic-view">
+                                        <article class="post">
+                                            <div class="post-content mb-5">
+                                                <!-- <h2 class="h1 mb-4"> ss</h2> -->  
+                                                <h2 class="h1 mb-4">{{ $service->{'name_' . app()->getLocale()} }}</h2>
+                                                 <p>
+                                                
+                                                 {!! $service->{'description_' . app()->getLocale()} !!}
+                                                 <div class="row g-6 mt-3 mb-10">
+                                                    @foreach ($images as $image)
+                                                    <div class="col-md-6">
+                                                        <figure class="hover-scale rounded cursor-dark"><a href="{{ asset('storage/app/public/'.$image->image_url) }}" data-glightbox="" data-gallery="post"> <img src="{{ asset('storage/app/public/'.$image->image_url) }}" alt=""></a>
+                                                        </figure>
+                                                    </div>
+                                               
+
+                     
+                                                    @endforeach 
+                                                </div>
+                                            </div>
+                                            <!-- /.post-content -->
+                                        </article>
+                                        <!-- /.post -->
+                                    </div>
+                                    <!-- /.classic-view -->
+                                    <h3 class="mb-6">{{ __('messages.tRelate') }}</h3>
+                                    <div class="swiper-container blog grid-view mb-16" data-margin="30" data-dots="true"
+                                        data-items-md="3" data-items-xs="1">
+                                        <div class="swiper">
+                                            <div class="swiper-wrapper">
+                                                @foreach ($relatedservices as $service)
+                                                <!--/.swiper-slide -->
+                                                <div class="swiper-slide">
+                                                        <article>
+                                                            <figure class="overlay overlay-1 hover-scale rounded mb-5"><a
+                                                                    href="#"> <img src="{{ asset('storage/app/public/'.$service->product_image) }}"
+                                                                        alt="" /></a>
+                                                                <figcaption>
+                                                                    <h5 class="from-top mb-0">Read More</h5>
+                                                                </figcaption>
+                                                            </figure>
+                                                            <div class="post-header">
+                                                                <div class="post-category text-line"> 
+                                                                </div>
+                                                                <!-- /.post-category -->
+                                                                <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark"
+                                                                        href="{{ route('service.detail', $service->id) }}">{{ $service->{'name_' . app()->getLocale()} }}</a></h2>
+                                                            </div>
+                                                        </article>
+                                                        <!-- /article -->
+                                                    </div>
+                                                    <!--/.swiper-slide -->
+                                                @endforeach 
+                                            </div>
+                                            <!--/.swiper-wrapper -->
+                                        </div>
+                                        <!-- /.swiper -->
+                                    </div>
+                                    <!-- /.swiper-container -->
                                 </div>
-                                <h2 class="post-title h3 fs-22"><a href="{{ route('product.detail', $product->id) }}" class="link-dark">{{ $product->name }}</a></h2>
+                                <!-- /.card-body -->
                             </div>
-                            <!-- /.post-header -->
+                            <!-- /.card -->
                         </div>
-                    @empty
-                    @endforelse
-                        
-                        
-                        <!-- /.item -->
+                        <!-- /.blog -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /column -->
                 </div>
-                <!-- /.grid -->
-                <nav class="d-flex justify-content-center" aria-label="pagination">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i class="uil uil-arrow-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true"><i class="uil uil-arrow-right"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.pagination -->
-                </nav>
-                <!-- /nav -->
+                <!-- /.row -->
             </div>
             <!-- /.container -->
         </section>
-        <!-- /section -->
-         
 
     </div>
     <!-- /.content-wrapper --> 

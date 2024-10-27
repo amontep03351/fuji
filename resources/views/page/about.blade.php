@@ -57,7 +57,7 @@
                      <div class="col-lg-5">
                         <h2 class="fs-16 text-uppercase text-line text-primary mb-3">{{ __('messages.nav_about') }}</h2>
                         <h6 class="display-6 mb-7">{{ $aboutUs->{'title_' . app()->getLocale()} }}</h6>
-                            {{ strip_tags($aboutUs->{'description_' . app()->getLocale()}) }}
+                            {!! $aboutUs->{'description_' . app()->getLocale()} !!}
                         <!--/.accordion -->
                     </div>
                     <!--/column -->
@@ -72,8 +72,8 @@
      
     @include('page.footer')
     @include('page.progresswrap')
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="/../assets/js/plugins.js"></script>
+    <script src="/../assets/js/theme.js"></script>
 </body>
 
 </html>

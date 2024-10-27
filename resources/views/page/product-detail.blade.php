@@ -298,15 +298,62 @@
                                     <div class="classic-view">
                                         <article class="post">
                                             <div class="post-content mb-5">
-                                                <!-- <h2 class="h1 mb-4"> ss</h2> --> 
-                                                {{ strip_tags($ProductTranslation->description)  }}
+                                                <!-- <h2 class="h1 mb-4"> ss</h2> -->  
+                                                <h2 class="h1 mb-4">{{ $ProductTranslation->name  }}</h2>
+                                                 <p>
+                                                 {!! $ProductTranslation->description !!}
+                                                 <div class="row g-6 mt-3 mb-10">
+                                                    @foreach ($images as $image)
+                                                        <div class="col-md-6">  
+                                                        <figure class="hover-scale rounded cursor-dark"><a
+                                                                href="{{ asset('storage/app/public/'.$image->image_url) }}"
+                                                                data-glightbox="{{ $ProductTranslation->name  }}"
+                                                                data-gallery="post"> <img
+                                                                    src="{{ asset('storage/app/public/'.$image->image_url) }}" alt="" /></a>
+                                                        </figure>
+                                                        </div> 
+                                                    @endforeach 
+                                                </div>
                                             </div>
                                             <!-- /.post-content -->
                                         </article>
                                         <!-- /.post -->
                                     </div>
                                     <!-- /.classic-view -->
-                               
+                                    <h3 class="mb-6">{{ __('messages.tRelate') }}</h3>
+                                    <div class="swiper-container blog grid-view mb-16" data-margin="30" data-dots="true"
+                                        data-items-md="3" data-items-xs="1">
+                                        <div class="swiper">
+                                            <div class="swiper-wrapper">
+                                                @foreach ($relatedProducts as $product)
+                                                <!--/.swiper-slide -->
+                                                <div class="swiper-slide">
+                                                        <article>
+                                                            <figure class="overlay overlay-1 hover-scale rounded mb-5"><a
+                                                                    href="#"> <img src="{{ asset('storage/app/public/'.$product->product_image) }}"
+                                                                        alt="" /></a>
+                                                                <figcaption>
+                                                                    <h5 class="from-top mb-0">Read More</h5>
+                                                                </figcaption>
+                                                            </figure>
+                                                            <div class="post-header">
+                                                                <div class="post-category text-line">
+                                                                    <a href="#" class="hover" rel="category">Category</a>
+                                                                </div>
+                                                                <!-- /.post-category -->
+                                                                <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark"
+                                                                        href="{{ route('product.detail', $product->id) }}">{{ $product->name }}</a></h2>
+                                                            </div>
+                                                        </article>
+                                                        <!-- /article -->
+                                                    </div>
+                                                    <!--/.swiper-slide -->
+                                                @endforeach 
+                                            </div>
+                                            <!--/.swiper-wrapper -->
+                                        </div>
+                                        <!-- /.swiper -->
+                                    </div>
                                     <!-- /.swiper-container -->
                                 </div>
                                 <!-- /.card-body -->
@@ -326,8 +373,8 @@
     <!-- /.content-wrapper --> 
     @include('page.footer')
     @include('page.progresswrap')
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="/../assets/js/plugins.js"></script>
+    <script src="/../assets/js/theme.js"></script>
 </body>
 
 </html>

@@ -55,19 +55,18 @@
                 <div class="swiper-container grid-view mb-6" data-margin="30" data-dots="true" data-items-xl="4"
                     data-items-md="2" data-items-xs="1">
                     <div class="swiper">
-                        <div class="swiper-wrapper">
-                            
+                        <div class="swiper-wrapper"> 
 
                             @foreach($System as $Sys)
                                 <div class="swiper-slide">
-                                    <figure class="rounded mb-6"><img src="{{ asset('storage/app/public/'.$Sys->image_url) }}"
-                                            srcset="{{ asset('storage/app/public/'.$Sys->image_url) }}" alt="" /><a class="item-link"
-                                            href="{{ asset('storage/app/public/'.$Sys->image_url) }}" data-glightbox
+                                    <figure class="rounded mb-6"><img src="{{ asset('storage/app/public/'.$Sys->system_image) }}"
+                                            srcset="{{ asset('storage/app/public/'.$Sys->system_image) }}" alt="" /><a class="item-link"
+                                            href="{{ asset('storage/app/public/'.$Sys->system_image) }}" data-glightbox
                                             data-gallery="projects-group"><i class="uil uil-focus-add"></i></a></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">
-                                            <h2 class="post-title h3"><a href="{{ route('system.detail', $Sys) }}" class="link-dark"> 
-                                            {{ $Sys->{'title_' . app()->getLocale()} }}</a></h2>
+                                            <h2 class="post-title h3"><a href="{{ route('system.detail', $Sys->id) }}" class="link-dark"> 
+                                            {{ $Sys->{'name_' . app()->getLocale()} }}</a></h2>
                                         </div>
                                         <!-- /.post-header -->
                                     </div>
@@ -90,8 +89,8 @@
     <!-- /.content-wrapper -->
     @include('page.footer')
     @include('page.progresswrap')
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="/../assets/js/plugins.js"></script>
+    <script src="/../assets/js/theme.js"></script>
 </body>
 
 </html>

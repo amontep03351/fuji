@@ -47,10 +47,11 @@ Route::get('/dashboard', function () {
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [IndexController::class, 'about'])->name('about');
 Route::get('/system', [IndexController::class, 'system'])->name('system'); 
-Route::get('/system-detail/{category}', [IndexController::class, 'systemdetail'])->name('system.detail');
+Route::get('/system-detail/{id}', [IndexController::class, 'systemdetail'])->name('system.detail');
 Route::get('/catelist/{category}', [IndexController::class, 'catelist'])->name('catelist');
 Route::get('/product-detail/{product}', [IndexController::class, 'productdetail'])->name('product.detail');
 Route::get('/service', [IndexController::class, 'service'])->name('service');
+Route::get('/service-detail/{service}', [IndexController::class, 'servicedetail'])->name('service.detail');
 Route::get('/contact', [IndexController::class, 'contact'])->name('contact');
 
 

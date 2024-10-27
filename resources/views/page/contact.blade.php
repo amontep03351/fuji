@@ -50,9 +50,7 @@
                             <div class="row gx-0">
                                 <div class="col-lg-6 align-self-stretch">
                                     <div class="map map-full rounded-top rounded-lg-start">
-                                        <iframe
-                                src="{{ $ContactUs->maplocation }}"
-                                style="width:100%; height: 100%; border:0" allowfullscreen></iframe>
+                                    {!! $ContactUs->map_location_1  !!}
                                     </div>
                                     <!-- /.map -->
                                 </div>
@@ -66,7 +64,7 @@
                                             </div>
                                             <div class="align-self-start justify-content-start">
                                                 <h5 class="mb-1">{{ __('messages.tAddress') }}</h5>
-                                                <address> {{ strip_tags($ContactUs->{'address_' . app()->getLocale()}) }}  
+                                                <address> {!! $ContactUs->{'address_' . app()->getLocale().'_1'}  !!}
                                                 </address>
                                             </div>
                                         </div>
@@ -81,7 +79,7 @@
                                                         class="uil uil-phone-volume"></i> </div>
                                             </div>
                                             <div>
-                                                <h5 class="mb-1">Phone</h5>
+                                                <h5 class="mb-1">{{ __('messages.tcLastName') }}</h5>
                                                 @if (is_array($telArray) && count($telArray) > 0)
                                                     
                                                     @foreach ($telArray as $tel) 
@@ -101,7 +99,7 @@
                                                         class="uil uil-envelope"></i> </div>
                                             </div>
                                             <div>
-                                                <h5 class="mb-1">E-mail</h5>
+                                                <h5 class="mb-1">{{ __('messages.tcEmail') }}</h5>
                                                 <p class="mb-0">
                                          
                                                 @if (is_array($mailArray) && count($mailArray) > 0)
@@ -122,6 +120,37 @@
                                     </div>
                                     <!--/div -->
                                 </div>
+                                
+                                <!--/column -->
+                            </div>
+                            <div class="row gx-0">
+                                <div class="col-lg-6 align-self-stretch">
+                                    <div class="map map-full rounded-top rounded-lg-start">
+                                        {!!  $ContactUs->map_location_2 !!} 
+                                    </div>
+                                    <!-- /.map -->
+                                </div>
+                                <!--/column -->
+                                <div class="col-lg-6">
+                                    <div class="p-10 p-md-11 p-lg-14">
+                                        <div class="d-flex flex-row">
+                                            <div>
+                                                <div class="icon text-primary fs-28 me-4 mt-n1"> <i
+                                                        class="uil uil-location-pin-alt"></i> </div>
+                                            </div>
+                                            <div class="align-self-start justify-content-start">
+                                                <h5 class="mb-1">{{ __('messages.tAddress') }}</h5>
+                                                <address> {!! $ContactUs->{'address_' . app()->getLocale().'_2'} !!} 
+                                                </address>
+                                            </div>
+                                        </div>
+                                         
+                                   
+                                        <!--/div -->
+                                    </div>
+                                    <!--/div -->
+                                </div>
+                                
                                 <!--/column -->
                             </div>
                             <!--/.row -->
@@ -214,8 +243,8 @@
     <!-- /.content-wrapper --> 
     @include('page.footer')
     @include('page.progresswrap')
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="/../assets/js/plugins.js"></script>
+    <script src="/../assets/js/theme.js"></script>
 </body>
 
 </html>

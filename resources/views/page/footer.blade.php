@@ -5,16 +5,14 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <img class="mb-4" src="../assets/img/logo-light.png"
-                            srcset="./assets/img/logo/logo-spread.png" style="height: 120px;" alt="" />
+                            srcset="../assets/img/logo/logo-spread.png" style="height: 120px;" alt="" />
                     </div>
                     <div class="col-lg-8">
-                        <!-- <iframe
+                        <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.0567078877293!2d100.67164121136379!3d13.775453796688144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d63d7c735d12b%3A0xd3b57305e66ca6!2zRlVKSSBFTlZJUk8g4oCOKFRIQUlMQU5EKeKAjiBDTy4sTFRE!5e0!3m2!1sth!2sth!4v1718877928408!5m2!1sth!2sth"
                                     width="360" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-                        <iframe
-                            src="{{ $ContactUs->maplocation }}"
-                            style="width:100%; height: 250px; border:0" allowfullscreen></iframe>
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                         
                         <div class="offcanvas-footer">
                             <div>
                                 <nav class="nav social social-white">
@@ -36,7 +34,7 @@
                 <div class="widget">
                     <address>
                     
-                    {{ strip_tags($ContactUs->{'address_' . app()->getLocale()}) }}    
+                    {!! $ContactUs->{'address_' . app()->getLocale().'_1'} !!}  
                     
                     </address>
                     @php

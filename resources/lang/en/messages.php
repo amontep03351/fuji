@@ -30,5 +30,9 @@ return [
     'tListpage' => 'List page',
     'tCategory'=>  'Category',
     'tProduct'=>  'Product',
-    'tReadmore' =>  'Read more', 
+    'tReadmore' =>  'Read more',  
+    'twwd'=> 'What We Do?',
+    'tHeadService' =>  'The service we offer is specifically designed to meet your needs.',
+    'tRelate' =>'Relate'
+    
 ];
